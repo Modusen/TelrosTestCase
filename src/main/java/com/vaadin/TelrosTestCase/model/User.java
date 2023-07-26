@@ -2,9 +2,9 @@ package com.vaadin.TelrosTestCase.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
-
 
 import java.time.LocalDate;
 
@@ -15,8 +15,9 @@ import java.time.LocalDate;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String login;
+    @Getter
     private String password;
 
     private String lastName;
