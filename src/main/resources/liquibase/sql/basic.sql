@@ -36,22 +36,22 @@ CREATE TABLE IF NOT EXISTS users
 );
 
 INSERT INTO users (login, password, last_name, first_name, patronymic, birth_date, email, phone_number, role)
-VALUES ('admin', 'admin', 'Administratorov', 'Administrator', 'Administratorovich', '1992-12-31', 'notRealAdminEmail@ad.ru', '+7(999)999-99-99', 'ADMIN');
+VALUES ('admin', 'admin', 'Administratorov', 'Administrator', 'Administratorovich', '1992-12-31', 'notRealAdminEmail@ad.ru', '+7(999)999-99-99', 'ROLE_ADMIN');
 
 INSERT INTO users (login, password, last_name, first_name, patronymic, birth_date, email, phone_number, role)
-VALUES ('login', 'password', 'Astrashenya', 'Dmitriy', 'Aleksandrovich', '1992-12-31', 'notRealEmail@ad.ru', '+7(888)888-88-88', 'USER');
+VALUES ('login', 'password', 'Astrashenya', 'Dmitriy', 'Aleksandrovich', '1992-12-31', 'notRealEmail@ad.ru', '+7(888)888-88-88', 'ROLE_ADMIN');
 
 INSERT INTO users (login, password, last_name, first_name, patronymic, birth_date, email, phone_number, role)
-VALUES ('test', 'test', 'Karpov', 'Konstantin', 'Ivanovich', '1990-05-09', 'notRealEmail@ad.ru', '+7(777)777-77-77', 'USER');
+VALUES ('test', 'test', 'Karpov', 'Konstantin', 'Ivanovich', '1990-05-09', 'notRealEmail@ad.ru', '+7(777)777-77-77', 'ROLE_ADMIN');
 
 INSERT INTO users (login, password, last_name, first_name, patronymic, birth_date, email, phone_number, role)
-VALUES ('zolina', 'zolina123', 'Zolina', 'Elena', 'Vladimirovna', '1996-10-17', 'notRealEmail@ad.ru', null, 'USER');
+VALUES ('zolina', 'zolina123', 'Zolina', 'Elena', 'Vladimirovna', '1996-10-17', 'notRealEmail@ad.ru', null, 'ROLE_USER');
 
 INSERT INTO users (login, password, last_name, first_name, patronymic, birth_date, email, phone_number, role)
-VALUES ('test1', 'test1', 'Kuklina', 'Olga', 'Ivanovna', '1999-11-25', 'notRealEmail@ad.ru', 'No validation here', 'USER');
+VALUES ('test1', 'test1', 'Kuklina', 'Olga', 'Ivanovna', '1999-11-25', 'notRealEmail@ad.ru', 'No validation here', 'ROLE_USER');
 
 INSERT INTO users (login, password, last_name, first_name, patronymic, birth_date, email, phone_number, role)
-VALUES ('test2', 'test2', 'Stepanov', 'Ilya', 'Sergeevich', '1986-03-16', 'notRealEmail@ad.ru', null, 'USER');
+VALUES ('test2', 'test2', 'Stepanov', 'Ilya', 'Sergeevich', '1986-03-16', 'notRealEmail@ad.ru', null, 'ROLE_USER');
 
 INSERT INTO users (login, password, last_name, first_name, patronymic, birth_date, email, phone_number, role)
-VALUES ('test3', 'test3', 'Polenova', 'Elizaveta', 'Evgenyevna', '1999-01-29', 'notRealEmail@ad.ru', null, 'USER');
+VALUES ('test3', 'test3', 'Polenova', 'Elizaveta', 'Evgenyevna', '1999-01-29', 'notRealEmail@ad.ru', null, 'ROLE_USER');

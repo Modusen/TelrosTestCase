@@ -32,7 +32,7 @@ public class UserEditor extends VerticalLayout implements KeyNotifier {
     private final TextField email = new TextField("Email");
     private final TextField phoneNumber = new TextField("Phone number");
 
-    private final RadioButtonGroup<Role> role = new RadioButtonGroup<>("Role", Role.ADMIN, Role.USER);
+    private final RadioButtonGroup<Role> role = new RadioButtonGroup<>("Role", Role.ROLE_ADMIN, Role.ROLE_USER);
 
     private final Button save = new Button("Сохранить", VaadinIcon.CHECK.create());
     private final Button cancel = new Button("Отмена");
