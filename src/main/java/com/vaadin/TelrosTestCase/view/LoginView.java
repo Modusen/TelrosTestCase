@@ -1,6 +1,6 @@
 package com.vaadin.TelrosTestCase.view;
 
-import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -9,7 +9,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 
-@Route("/logging")
+@Route("logging")
 @PageTitle("Login")
 @AnonymousAllowed
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
@@ -26,7 +26,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
         login.setAction("/login");
 
-        add(new H1("Test Application"), login);
+        add(new H2("ТЕЛРОС Test Case Application"), login);
     }
 
     @Override

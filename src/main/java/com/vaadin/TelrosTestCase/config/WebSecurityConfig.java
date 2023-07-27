@@ -1,5 +1,6 @@
 package com.vaadin.TelrosTestCase.config;
 
+import com.vaadin.TelrosTestCase.security.MySimpleAuthenticationSuccessHandler;
 import com.vaadin.TelrosTestCase.view.LoginView;
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,22 @@ public class WebSecurityConfig extends VaadinWebSecurity {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    @Bean
+    public MySimpleAuthenticationSuccessHandler mySimpleAuthenticationSuccessHandler() {
+        return new MySimpleAuthenticationSuccessHandler();
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorization -> authorization
                         .requestMatchers("/users").hasAnyRole("ADMIN")
-                        .requestMatchers("/logging", "/logout").permitAll())
-                .formLogin().loginPage("/logging").loginProcessingUrl("/login");
+                        .requestMatchers("/me").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/logging", "/logout", "/").permitAll())
+                .formLogin()
+                .loginPage("/logging")
+                .loginProcessingUrl("/login")
+                .successHandler(mySimpleAuthenticationSuccessHandler());
 
         super.configure(http);
 

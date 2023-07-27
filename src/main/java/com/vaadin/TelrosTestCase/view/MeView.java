@@ -1,6 +1,6 @@
 package com.vaadin.TelrosTestCase.view;
 
-import com.vaadin.TelrosTestCase.components.UserEditor;
+import com.vaadin.TelrosTestCase.components.UserPersonalEditor;
 import com.vaadin.TelrosTestCase.model.User;
 import com.vaadin.TelrosTestCase.repository.UserRepository;
 import com.vaadin.TelrosTestCase.service.SecurityService;
@@ -9,51 +9,40 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 
-@Route("/users")
+@Route("me")
 @PermitAll
-@AnonymousAllowed
-public class MainView extends VerticalLayout {
+public class MeView extends VerticalLayout {
     private SecurityService securityService;
     private final UserRepository userRepository;
-    private final UserEditor userEditor;
+    private final UserPersonalEditor userPersonalEditor;
     private final Grid<User> grid = new Grid<>(User.class, false);
 
-    private final TextField filter = new TextField("",
-            "Напечатайте часть Фамилии/Имени/Отчества с учетом регистра для фильтрации");
-    private final Button addNewBtn = new Button("Добавить нового");
-    private final HorizontalLayout toolbar = new HorizontalLayout(filter, addNewBtn);
-
     @Autowired
-    MainView(UserRepository userRepository, UserEditor userEditor, SecurityService securityService) {
+    MeView(UserRepository userRepository, UserPersonalEditor userEditor, SecurityService securityService) {
         this.userRepository = userRepository;
-        this.userEditor = userEditor;
+        this.userPersonalEditor = userEditor;
         this.securityService = securityService;
 
-        H2 logo = new H2("Список всех пользователей");
+        H2 logo = new H2("Мои данные");
         logo.addClassName("logo");
         HorizontalLayout header;
         if (securityService.getAuthenticatedUser() != null) {
             Button logout = new Button("Logout", click ->
                     securityService.logout());
+            logout.getElement().getStyle().set("margin-left", "1600px");
             header = new HorizontalLayout(logo, logout);
         } else {
             header = new HorizontalLayout(logo);
         }
 
-        add(header, toolbar, grid, userEditor);
+        add(header, grid, userEditor);
 
-        /**
-         Чтобы влезла подсказка
-         */
-        filter.setWidth("650px");
 
         /**
          Сделано для упорядочения столбцов в отображении
@@ -67,23 +56,24 @@ public class MainView extends VerticalLayout {
         grid.addColumn(User::getPhoneNumber).setHeader("Номер телефона").setSortable(true);
         grid.addColumn(User::getImage).setHeader("Фото");
 
-        filter.setValueChangeMode(ValueChangeMode.EAGER);
-        filter.addValueChangeListener(e -> showUser(e.getValue()));
+
         grid.asSingleSelect().addValueChangeListener(e -> {
             userEditor.editUser(e.getValue());
         });
-        addNewBtn.addClickListener(e -> userEditor.editUser(new User()));
+
         userEditor.setChangeHandler(() -> {
             userEditor.setVisible(false);
-            showUser(filter.getValue());
         });
 
         showUser("");
     }
 
     private void showUser(String name) {
+        String myAuthentication = securityService.getAuthenticatedUser().getUsername();
+        User me = userRepository.findByLogin(myAuthentication)
+                .orElseThrow(() -> new UsernameNotFoundException("User " + myAuthentication + " not found"));
         if (name.isEmpty()) {
-            grid.setItems(userRepository.findAll());
+            grid.setItems(me);
         } else grid.setItems(userRepository.findByName(name));
     }
 

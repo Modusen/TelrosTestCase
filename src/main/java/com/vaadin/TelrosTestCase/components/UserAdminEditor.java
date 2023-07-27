@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringComponent
 @UIScope
-public class UserEditor extends VerticalLayout implements KeyNotifier {
+public class UserAdminEditor extends VerticalLayout implements KeyNotifier {
     private final UserRepository userRepository;
     private User user;
     private final TextField login = new TextField("Login");
@@ -29,6 +29,7 @@ public class UserEditor extends VerticalLayout implements KeyNotifier {
     private final TextField firstName = new TextField("First name");
     private final TextField patronymic = new TextField("Patronymic");
     private final DatePicker birthDate = new DatePicker("Select birth date");
+
     private final TextField email = new TextField("Email");
     private final TextField phoneNumber = new TextField("Phone number");
 
@@ -44,7 +45,7 @@ public class UserEditor extends VerticalLayout implements KeyNotifier {
     private ChangeHandler changeHandler;
 
     @Autowired
-    public UserEditor(UserRepository userRepository) {
+    public UserAdminEditor(UserRepository userRepository) {
         this.userRepository = userRepository;
         add(firstName, actions);
         add(login, password, lastName, firstName, patronymic, birthDate, email, phoneNumber, role, actions);
