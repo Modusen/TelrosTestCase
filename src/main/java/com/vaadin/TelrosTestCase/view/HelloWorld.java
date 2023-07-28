@@ -20,7 +20,7 @@ public class HelloWorld extends VerticalLayout {
         this.securityService = securityService;
 
         H2 logo = new H2("README для тестового задания ТЕЛРОС");
-        H3 greetings = new H3("Приветствую Вас в моем первом web-приложении на Vaadin и поздравляю с успешным запуском приложения!!! Огромное спасибо за это тестовое задание. Было очень интересно и позновательно!!");
+        H3 greetings = new H3("Приветствую Вас в моем первом web-приложении на Vaadin и поздравляю с успешным запуском приложения!!! Огромное спасибо за это тестовое задание. Было очень интересно и познавательно!!");
         logo.addClassName("logo");
         HorizontalLayout header;
         if (securityService.getAuthenticatedUser() != null) {
