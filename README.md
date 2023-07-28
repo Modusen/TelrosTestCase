@@ -9,5 +9,5 @@
         1) Создать БД и внести все параметры для подключения в application.properties.
         2) Запустить докер контейнер с БД командой "docker-compose up -d". После этого необходимо прописать в application.properties порт,
  ![image](https://github.com/Modusen/TelrosTestCase/assets/108898417/7173bea8-72a0-4370-9700-32c7fcfc8011)
- присвоенный этому контейнеру, посмотрев который можно с помощью команды docker ps -a в столбце PORTS ![image](https://github.com/Modusen/TelrosTestCase/assets/108898417/9d7b73c2-a503-45f1-a24b-346580a12b1d)
+ присвоенный этому контейнеру, посмотреть который можно с помощью команды "docker ps -a" в столбце PORTS ![image](https://github.com/Modusen/TelrosTestCase/assets/108898417/9d7b73c2-a503-45f1-a24b-346580a12b1d)
 * Далее можно запускать приложение (Shift+F10).
