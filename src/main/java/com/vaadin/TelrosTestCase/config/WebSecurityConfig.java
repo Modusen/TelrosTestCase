@@ -30,7 +30,7 @@ public class WebSecurityConfig extends VaadinWebSecurity {
                 .authorizeHttpRequests(authorization -> authorization
                         .requestMatchers("/users").hasAnyRole("ADMIN")
                         .requestMatchers("/me").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers("/logging", "/logout", "/").permitAll())
+                        .requestMatchers("/logging", "/logout").permitAll())
                 .formLogin()
                 .loginPage("/logging")
                 .loginProcessingUrl("/login")
